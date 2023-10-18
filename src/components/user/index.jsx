@@ -5,7 +5,7 @@ import './index.scss'
 
 function User() {
 
-    const { userId } = useParams()
+    // const { userId } = useParams()
 
     return (
         <div>
