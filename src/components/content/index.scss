@@ -3,7 +3,8 @@
     height: 100%;
     width: 100%;
     padding: 20px;
-    overflow: hidden;
+
+    /* Add overflow property to handle content overflow */
 
     .container-content__mainbox {
         display: flex;
@@ -12,27 +13,33 @@
         justify-content: flex-start;
         height: 100%;
         background: rgb(49, 49, 49);
-
         width: 100%;
         padding: 20px;
 
         .container-content__mainbox__box {
             display: flex;
+            align-items: center;
+            justify-content: flex-start;
             flex-direction: column;
             overflow: scroll;
-            background: rgb(120, 120, 120);
+            padding: 20px !important;
+            max-height: 100%;
             gap: 20px;
-
+            background: rgb(120, 120, 120);
         }
 
         .container-content__mainbox__box__CardMedia {
-            height: 100px;
-            width: 100% !important;
-            object-fit: contain;
-        }
+            display: flex;
+            flex-direction: column;
+            width: 80% !important;
+            max-width: 80%;
+            min-height: 100%;
+            max-height: 100%;
 
-        .container-content__mainbox__box__card {
-            margin-top: 20px;
+
+            .container-content__mainbox__box__CardMedia_image {
+                object-fit: contain;
+            }
         }
     }
 }

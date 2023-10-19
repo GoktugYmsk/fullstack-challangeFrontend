@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <Helmet>
-        <title>Instagram</title>
+        <title>Spring FullStack Proje</title>
       </Helmet>
       <Routes>
         <Route path="/" element={< CustomComponent />} />
