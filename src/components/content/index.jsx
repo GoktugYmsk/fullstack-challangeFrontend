@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -17,6 +17,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import './index.scss'
+import axios from 'axios';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -32,9 +33,29 @@ const ExpandMore = styled((props) => {
 
 function Content() {
     const [expanded, setExpanded] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(false)
+
+    const [commentList, setCommentList] = useState([])
+    const [error, setError] = useState('')
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/comment')
+            .then((response) => {
+                setCommentList(response.data);
+
+            })
+            .catch((error) => {
+                setError(error);
+                console.log('error', error)
+            });
+    }, []);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
+    };
+
+    const handleFavoriteClick = () => {
+        setIsFavorite(!isFavorite);
     };
 
     return (
@@ -71,7 +92,9 @@ function Content() {
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
+                            <IconButton onClick={handleFavoriteClick}
+                                color={isFavorite ? 'secondary' : 'default'}
+                                aria-label="add to favorites">
                                 <FavoriteIcon />
                             </IconButton>
                             <IconButton aria-label="share">
@@ -146,7 +169,7 @@ function Content() {
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
+                            <IconButton onClick={handleFavoriteClick} aria-label="add to favorites">
                                 <FavoriteIcon />
                             </IconButton>
                             <IconButton aria-label="share">
@@ -221,7 +244,9 @@ function Content() {
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
+                            <IconButton onClick={handleFavoriteClick}
+                                color={isFavorite ? 'secondary' : 'default'}
+                                aria-label="add to favorites">
                                 <FavoriteIcon />
                             </IconButton>
                             <IconButton aria-label="share">
@@ -296,7 +321,9 @@ function Content() {
                             </Typography>
                         </CardContent>
                         <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
+                            <IconButton onClick={handleFavoriteClick}
+                                color={isFavorite ? 'secondary' : 'default'}
+                                aria-label="add to favorites">
                                 <FavoriteIcon />
                             </IconButton>
                             <IconButton aria-label="share">
